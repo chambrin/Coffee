@@ -23,7 +23,7 @@ export default function Content({ imagePosition = 'left', title, content, imageS
                     height={500}
                 />
             </div>
-            <div className="w-full md:w-1/2 flex flex-col justify-center p-8 md:p-32 order-1 md:order-none">
+            <div className={`w-full md:w-1/2 flex flex-col justify-center ${isImageLeft ? 'p-8 md:p-32' : 'p-0 pr-44' } order-1 md:order-none`}>
                 <h2 className={`text-4xl md:text-8xl mb-2 ${editorial.className}`}>{title}</h2>
                 <p className="text-lg md:text-xl mt-4 md:mt-9">{content}</p>
             </div>
