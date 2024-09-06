@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { Aylafont, Geistfont } from '@/lib/font';
+import { editorial } from '@/lib/font';
 
 const prisma = new PrismaClient();
 
@@ -19,8 +19,8 @@ export default async function Home() {
   const users = await getUsers();
 
   return (
-      <div className={`${Aylafont.className}`}>
-        <h1 className={`${Geistfont.className}`}>Liste des utilisateurs</h1>
+      <div >
+        <h1 className={`${editorial.className}`}>Liste des utilisateurs</h1>
         {users.length > 0 ? (
             <ul>
               {users.map((user) => (

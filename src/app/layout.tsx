@@ -1,7 +1,7 @@
 // src/app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
-import { Aylafont, Geistfont } from "@/lib/font";
+import { editorial, Surtifont } from "@/lib/font";
 import Nav from "@/app/_navigation/Nav";
 import Footer from "@/app/_navigation/Footer";
 
@@ -16,8 +16,8 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" className={`${Aylafont.variable} ${Geistfont.variable}`}>
-        <body className={`${Aylafont.className} ${Geistfont.className} text-primary`} >
+        <html lang="en" className={`${editorial.variable} ${Surtifont.variable}`}>
+        <body className={`${editorial.className} ${Surtifont.className} text-primary`} >
         <Nav  />
             {children}
         <Footer />
@@ -25,3 +25,5 @@ export default function RootLayout({
         </html>
     );
 }
+
+

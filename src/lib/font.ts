@@ -1,30 +1,23 @@
 import localFont from 'next/font/local'
 
-export const Aylafont = localFont({
+export const editorial = localFont({
     src: [
         {
-            path: '../app/fonts/Ayla-Ethiopia-Regular.woff',
+            path: '../app/fonts/editorial.otf',
             style: 'regular',
         },
-        {
-            path: '../app/fonts/Ayla-Ethiopia-UltraLight.otf',
-            style: 'light',
-        },
     ],
-    variable: '--font-mycustom',
+    variable: '--font-editorial',
 })
 
 
-export const Geistfont = localFont({
+
+export const Surtifont = localFont({
     src: [
         {
-            path: '../app/fonts/GeistMonoVF.woff',
-            style: 'mono',
-        },
-        {
-            path: '../app/fonts/GeistVF.woff',
-            style: 'vf',
-        },
+            path: '../app/fonts/Surt.woff2',
+            style: 'regular',
+        }
     ],
-    variable: '--font-base',
+    variable: '--font-surti',
 })
