@@ -13,8 +13,30 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id    String  @id @default(cuid())
-  email String  @unique
-  name  String?
+// prisma/schema.prisma
+
+enum Size {
+  SMALL
+  MEDIUM
+  LARGE
+}
+
+enum Grind {
+  GROUND_FOR_FILTER
+  GROUND_FOR_FRENCH_PRESS
+  GROUND_FOR_STOVETOP
+  GROUND_FOR_ESPRESSO
+}
+
+model Coffee {
+  id             String   @id @default(cuid())
+  name           String
+  description    String
+  caracteristics String
+  price          Float
+  image          String
+  size           Size
+  grind          Grind
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }
