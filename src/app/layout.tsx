@@ -2,6 +2,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Aylafont, Geistfont } from "@/lib/font";
+import Nav from "@/app/_navigation/Nav";
+import Footer from "@/app/_navigation/Footer";
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -15,7 +17,11 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className={`${Aylafont.variable} ${Geistfont.variable}`}>
-        <body className={`${Aylafont.className} ${Geistfont.className}`}>{children}</body>
+        <body className={`${Aylafont.className} ${Geistfont.className} text-primary`} >
+        <Nav  />
+            {children}
+        <Footer />
+        </body>
         </html>
     );
 }
