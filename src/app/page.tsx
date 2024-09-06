@@ -8,7 +8,6 @@ import EspressoImg from "@public/images/espresso.jpg";
 import BoxImg from "@public/images/box.jpg";
 import ManImg from "@public/images/man.jpg";
 
-
 type ImagePosition = 'left' | 'right';
 
 interface ContentData {
@@ -18,7 +17,6 @@ interface ContentData {
     imagePosition: ImagePosition;
     isFirst: boolean;
 }
-
 
 export default function Home() {
     return (
@@ -38,6 +36,7 @@ export default function Home() {
         </main>
     );
 }
+
 // Page data
 const contentPageData: ContentData[] = [
     {
