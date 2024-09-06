@@ -8,6 +8,18 @@ import EspressoImg from "@public/images/espresso.jpg";
 import BoxImg from "@public/images/box.jpg";
 import ManImg from "@public/images/man.jpg";
 
+
+type ImagePosition = 'left' | 'right';
+
+interface ContentData {
+    title: string;
+    content: string;
+    imageSrc: typeof LandingImg;
+    imagePosition: ImagePosition;
+    isFirst: boolean;
+}
+
+
 export default function Home() {
     return (
         <main>
@@ -27,7 +39,7 @@ export default function Home() {
     );
 }
 // Page data
-const contentPageData = [
+const contentPageData: ContentData[] = [
     {
         title: 'For Coffee Drinkers',
         content: '',
