@@ -14,7 +14,7 @@ export default function Nav() {
     ];
 
     return (
-        <nav className="px-4 py-2 flex flex-row items-center justify-between w-full text-1xl">
+        <nav className=" py-2 flex flex-row items-center justify-between w-full text-1xl">
             <div className="flex px-1">
                 <svg
                     id="Layer_1"
@@ -38,7 +38,7 @@ export default function Nav() {
                     REDBRICK
                 </Link>
             </div>
-            <ul className="flex flex-row space-x-40 text-xl absolute left-1/2 transform -translate-x-1/2">
+            <ul className="hidden md:flex flex-row space-x-40 text-xl absolute left-1/2 transform -translate-x-1/2">
                 {menu.map((item, index) => (
                     <li key={index}>
                         <Link href={item.url}>
