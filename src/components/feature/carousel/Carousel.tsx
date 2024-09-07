@@ -56,8 +56,16 @@ export default function Carousel({ coffees, direction }: CarouselProps) {
         sequence();
     }, [controls, direction]);
 
+    const handleMouseEnter = () => {
+        controls.stop();
+    };
+
+    const handleMouseLeave = () => {
+        controls.start({ x: direction === 'left' ? '-100%' : '100%' });
+    };
+
     return (
-        <div className="overflow-hidden py-12">
+        <div className="overflow-hidden py-12" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
             {coffees.length > 0 ? (
                 <motion.div
                     className="flex gap-6"
