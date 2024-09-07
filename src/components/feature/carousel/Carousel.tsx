@@ -49,23 +49,23 @@ export default async function Carousel() {
     return (
         <div>
             {coffees.length > 0 ? (
-                <div className="overflow-x-scroll flex">
+                <div className="overflow-x-scroll  py-12 flex">
                     {coffees.map((coffee) => {
                         const imageSrc = imageMapping[coffee.name];
                         return (
-                            <div key={coffee.id} className="min-w-[300px] p-4">
+                            <div key={coffee.id} className="min-w-[300px] h-52 flex flex-col items-start justify-center p-4">
                                 {imageSrc ? (
                                     <Image
                                         src={imageSrc}
                                         alt={coffee.name}
-                                        width={300}
-                                        height={300}
-                                        className="object-cover rounded-lg"
+                                        width={200}
+                                        height={200}
+                                        className="object-cover w-full p-6 h-52 bg-border rounded-3xl"
                                     />
                                 ) : (
                                     <p>Image not found for {coffee.name}</p>
                                 )}
-                                <h3 className="text-lg font-bold mt-2">{coffee.name}</h3>
+                                <h3 className="text-lg mt-2 text-left">{coffee.name}</h3>
                             </div>
                         );
                     })}
