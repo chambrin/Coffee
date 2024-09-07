@@ -2,7 +2,7 @@
 'use client'
 import Image, { StaticImageData } from 'next/image';
 import { motion, useAnimation } from 'framer-motion';
-import { useEffect } from 'react';
+import {useEffect, useRef} from 'react';
 
 // Image import
 import Ayla from '@public/products/Ayla-Ethiopia.png';
@@ -44,6 +44,7 @@ interface CarouselProps {
 
 export default function Carousel({ coffees, direction }: CarouselProps) {
     const controls = useAnimation();
+    const carouselRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const sequence = async () => {
@@ -63,14 +64,26 @@ export default function Carousel({ coffees, direction }: CarouselProps) {
         controls.start({ x: direction === 'left' ? '-50%' : '0%' });
     };
 
+    const handleScroll = (event: React.WheelEvent<HTMLDivElement>) => {
+        if (carouselRef.current) {
+            carouselRef.current.scrollLeft += event.deltaY;
+        }
+    };
+
     // Dupliquer les cafés pour créer un effet de défilement infini
     const duplicatedCoffees = [...coffees, ...coffees];
 
     return (
-        <div className="overflow-hidden py-12" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        <div
+            ref={carouselRef}
+            className="overflow-x-scroll pointer-events-none py-12"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onWheel={handleScroll}
+        >
             {duplicatedCoffees.length > 0 ? (
                 <motion.div
-                    className="flex gap-6"
+                    className="flex gap-6 pointer-events-auto"
                     animate={controls}
                     initial={{ x: direction === 'left' ? '0%' : '-50%' }}
                     transition={{ duration: 60, ease: 'linear', repeat: Infinity }}
