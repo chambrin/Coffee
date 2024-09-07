@@ -3,7 +3,7 @@ import React from 'react';
 import Content from "@/components/feature/content/ContentView";
 import Carousel from "@/components/feature/carousel/Carousel";
 import { Separator } from "@/components/ui/separator";
-import {getCoffees} from "@/app/_actions/getCoffees";
+import { getCoffees } from "@/app/_actions/getCoffees";
 
 // Images
 import LandingImg from "@public/images/landing.jpg";
@@ -37,7 +37,7 @@ export default async function Home() {
                         isFirst={section.isFirst}
                     />
                     <Separator />
-                    <Carousel coffees={coffees} />
+                    <Carousel coffees={coffees} direction={index % 2 === 0 ? 'left' : 'right'} />
                 </React.Fragment>
             ))}
         </main>

@@ -1,3 +1,4 @@
+// src/components/feature/carousel/Carousel.tsx
 'use client'
 import Image, { StaticImageData } from 'next/image';
 import { motion, useAnimation } from 'framer-motion';
@@ -39,20 +40,21 @@ const imageMapping: { [key: string]: StaticImageData } = {
 
 interface CarouselProps {
     coffees: Coffee[];
+    direction: 'left' | 'right';
 }
 
-export default function Carousel({ coffees }: CarouselProps) {
+export default function Carousel({ coffees, direction }: CarouselProps) {
     const controls = useAnimation();
 
     useEffect(() => {
         const sequence = async () => {
             while (true) {
-                await controls.start({ x: '-100%' });
+                await controls.start({ x: direction === 'left' ? '-100%' : '100%' });
                 await controls.start({ x: '0%' });
             }
         };
         sequence();
-    }, [controls]);
+    }, [controls, direction]);
 
     return (
         <div className="overflow-hidden py-12">
@@ -60,6 +62,7 @@ export default function Carousel({ coffees }: CarouselProps) {
                 <motion.div
                     className="flex gap-6"
                     animate={controls}
+                    initial={{ x: direction === 'left' ? '0%' : '-100%' }}
                     transition={{ duration: 60, ease: 'linear', repeat: Infinity }}
                 >
                     {coffees.map((coffee) => {
