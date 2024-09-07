@@ -16,12 +16,12 @@ export default function Content({ imagePosition, title, content, imageSrc, isFir
     const isImageLeft = imagePosition === 'left';
 
     return (
-        <div className={`flex flex-col md:flex-row ${isImageLeft ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
+        <div className={`flex flex-col items-center my-5 md:flex-row ${isImageLeft ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
             <div className="w-full md:w-1/2 order-2 md:order-none">
                 <Image
                     src={imageSrc}
                     alt="Content image"
-                    className="w-full h-auto object-cover rounded-3xl"
+                    className="w-full h-4/5 object-cover rounded-3xl"
                     width={500}
                     height={500}
                 />

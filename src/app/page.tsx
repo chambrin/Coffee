@@ -1,6 +1,7 @@
 import React from 'react';
 import Content from "@/components/feature/content/ContentView";
 import Carousel from "@/components/feature/carousel/Carousel";
+import { Separator } from "@/components/ui/separator"
 
 // Images
 import LandingImg from "@public/images/landing.jpg";
@@ -23,6 +24,7 @@ export default function Home() {
         <main>
             {contentPageData.map((section, index) => (
                 <React.Fragment key={index}>
+                    <Separator />
                     <Content
                         title={section.title}
                         content={section.content}
@@ -30,6 +32,7 @@ export default function Home() {
                         imagePosition={section.imagePosition}
                         isFirst={section.isFirst}
                     />
+                    <Separator />
                     <Carousel />
                 </React.Fragment>
             ))}

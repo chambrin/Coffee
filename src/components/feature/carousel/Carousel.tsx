@@ -49,7 +49,7 @@ export default async function Carousel() {
     return (
         <div>
             {coffees.length > 0 ? (
-                <div className="h-[350px] overflow-x-scroll flex">
+                <div className="overflow-x-scroll flex">
                     {coffees.map((coffee) => {
                         const imageSrc = imageMapping[coffee.name];
                         return (
@@ -66,7 +66,6 @@ export default async function Carousel() {
                                     <p>Image not found for {coffee.name}</p>
                                 )}
                                 <h3 className="text-lg font-bold mt-2">{coffee.name}</h3>
-                                <p className="text-sm">{coffee.description}</p>
                             </div>
                         );
                     })}
