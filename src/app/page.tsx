@@ -1,7 +1,9 @@
+// src/app/page.tsx
 import React from 'react';
 import Content from "@/components/feature/content/ContentView";
 import Carousel from "@/components/feature/carousel/Carousel";
-import { Separator } from "@/components/ui/separator"
+import { Separator } from "@/components/ui/separator";
+import {getCoffees} from "@/app/_actions/getCoffees";
 
 // Images
 import LandingImg from "@public/images/landing.jpg";
@@ -19,7 +21,9 @@ interface ContentData {
     isFirst: boolean;
 }
 
-export default function Home() {
+export default async function Home() {
+    const coffees = await getCoffees();
+
     return (
         <main>
             {contentPageData.map((section, index) => (
@@ -33,7 +37,7 @@ export default function Home() {
                         isFirst={section.isFirst}
                     />
                     <Separator />
-                    <Carousel />
+                    <Carousel coffees={coffees} />
                 </React.Fragment>
             ))}
         </main>

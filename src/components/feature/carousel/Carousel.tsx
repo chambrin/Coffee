@@ -1,9 +1,17 @@
-import { PrismaClient } from '@prisma/client';
+'use client'
 import Image, { StaticImageData } from 'next/image';
+import { motion, useAnimation } from 'framer-motion';
+import { useEffect } from 'react';
+
+interface Coffee {
+    id: string;
+    name: string;
+    // Add other properties as needed
+}
 
 // Image import
 import Ayla from '@public/products/Ayla-Ethiopia.png';
-import Coffee from '@public/products/Coffee-Coffee-Classic.png';
+import CoffeeImage from '@public/products/Coffee-Coffee-Classic.png';
 import Dark from '@public/products/Dark-Coffee-Rich.png';
 import Decaf from '@public/products/Decaf-Coffee.png';
 import Gandula from '@public/products/Gandula-Brazil.png';
@@ -14,24 +22,10 @@ import Mensur from '@public/products/Mensur-Abahika-Ethiopia.png';
 import Pedro from '@public/products/Pedro-Flores-Bolivia.png';
 import Rogue from '@public/products/Rogue-Coffee-Complex.png';
 
-const prisma = new PrismaClient();
-
-async function getCoffees() {
-    try {
-        const coffees = await prisma.coffee.findMany();
-        return coffees;
-    } catch (error) {
-        console.error('Failed to fetch coffees:', error);
-        return [];
-    } finally {
-        await prisma.$disconnect();
-    }
-}
-
 // Mapping between product names and imported images
 const imageMapping: { [key: string]: StaticImageData } = {
     'Ayla Ethiopia': Ayla,
-    'Coffee Coffee Classic': Coffee,
+    'Coffee Coffee Classic': CoffeeImage,
     'Dark Coffee Rich': Dark,
     'Decaf Coffee': Decaf,
     'Gandula Brazil': Gandula,
@@ -43,13 +37,31 @@ const imageMapping: { [key: string]: StaticImageData } = {
     'Rogue Coffee Complex': Rogue,
 };
 
-export default async function Carousel() {
-    const coffees = await getCoffees();
+interface CarouselProps {
+    coffees: Coffee[];
+}
+
+export default function Carousel({ coffees }: CarouselProps) {
+    const controls = useAnimation();
+
+    useEffect(() => {
+        const sequence = async () => {
+            while (true) {
+                await controls.start({ x: '-100%' });
+                await controls.start({ x: '0%' });
+            }
+        };
+        sequence();
+    }, [controls]);
 
     return (
-        <div>
+        <div className="overflow-hidden py-12">
             {coffees.length > 0 ? (
-                <div className="overflow-x-scroll  py-12 flex">
+                <motion.div
+                    className="flex gap-6"
+                    animate={controls}
+                    transition={{ duration: 60, ease: 'linear', repeat: Infinity }}
+                >
                     {coffees.map((coffee) => {
                         const imageSrc = imageMapping[coffee.name];
                         return (
@@ -69,7 +81,7 @@ export default async function Carousel() {
                             </div>
                         );
                     })}
-                </div>
+                </motion.div>
             ) : (
                 <p>Aucun café trouvé.</p>
             )}
