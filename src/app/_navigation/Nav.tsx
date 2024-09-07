@@ -14,7 +14,7 @@ export default function Nav() {
     ];
 
     return (
-        <nav className=" py-2 flex flex-row items-center justify-between w-full text-1xl">
+        <nav className="  py-2 flex flex-row items-center justify-between w-full text-1xl">
             <div className="flex px-1">
                 <svg
                     id="Layer_1"

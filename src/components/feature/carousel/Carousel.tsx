@@ -4,12 +4,6 @@ import Image, { StaticImageData } from 'next/image';
 import { motion, useAnimation } from 'framer-motion';
 import { useEffect } from 'react';
 
-interface Coffee {
-    id: string;
-    name: string;
-    // Add other properties as needed
-}
-
 // Image import
 import Ayla from '@public/products/Ayla-Ethiopia.png';
 import CoffeeImage from '@public/products/Coffee-Coffee-Classic.png';
@@ -22,6 +16,11 @@ import Jamir from '@public/products/Jamir-Munoz-Colombia.png';
 import Mensur from '@public/products/Mensur-Abahika-Ethiopia.png';
 import Pedro from '@public/products/Pedro-Flores-Bolivia.png';
 import Rogue from '@public/products/Rogue-Coffee-Complex.png';
+
+interface Coffee {
+    id: string;
+    name: string;
+}
 
 // Mapping between product names and imported images
 const imageMapping: { [key: string]: StaticImageData } = {
@@ -49,8 +48,8 @@ export default function Carousel({ coffees, direction }: CarouselProps) {
     useEffect(() => {
         const sequence = async () => {
             while (true) {
-                await controls.start({ x: direction === 'left' ? '-100%' : '100%' });
-                await controls.start({ x: '0%' });
+                await controls.start({ x: direction === 'left' ? '-50%' : '0%' });
+                await controls.start({ x: direction === 'left' ? '0%' : '-50%' });
             }
         };
         sequence();
@@ -61,22 +60,25 @@ export default function Carousel({ coffees, direction }: CarouselProps) {
     };
 
     const handleMouseLeave = () => {
-        controls.start({ x: direction === 'left' ? '-100%' : '100%' });
+        controls.start({ x: direction === 'left' ? '-50%' : '0%' });
     };
+
+    // Dupliquer les cafés pour créer un effet de défilement infini
+    const duplicatedCoffees = [...coffees, ...coffees];
 
     return (
         <div className="overflow-hidden py-12" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-            {coffees.length > 0 ? (
+            {duplicatedCoffees.length > 0 ? (
                 <motion.div
                     className="flex gap-6"
                     animate={controls}
-                    initial={{ x: direction === 'left' ? '0%' : '-100%' }}
+                    initial={{ x: direction === 'left' ? '0%' : '-50%' }}
                     transition={{ duration: 60, ease: 'linear', repeat: Infinity }}
                 >
-                    {coffees.map((coffee) => {
+                    {duplicatedCoffees.map((coffee, index) => {
                         const imageSrc = imageMapping[coffee.name];
                         return (
-                            <div key={coffee.id} className="min-w-[300px] h-52 flex flex-col items-start justify-center p-4">
+                            <div key={`${coffee.id}-${index}`} className="min-w-[300px] h-52 flex flex-col items-start justify-center p-4">
                                 {imageSrc ? (
                                     <Image
                                         src={imageSrc}

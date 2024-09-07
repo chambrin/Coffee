@@ -31,7 +31,7 @@ export default function Content({ imagePosition, title, content, imageSrc, isFir
                     height={500}
                 />
             </div>
-            <div className={`w-full md:w-1/2 flex flex-col justify-center p-8 ${isImageLeft ? 'md:p-32' : 'md:pl-0 md:pr-32' } order-1 md:order-none`}>
+            <div className={`w-full md:w-1/2 flex flex-col justify-center py-5 md:p-8 ${isImageLeft ? 'md:p-32' : 'md:pl-0 md:pr-32'} order-1 md:order-none`}>
                 <motion.h2
                     className={`text-4xl md:text-8xl mb-2 ${editorial.className}`}
                     initial={{ opacity: 0, y: 20 }}
