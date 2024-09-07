@@ -76,7 +76,7 @@ export default function Carousel({ coffees, direction }: CarouselProps) {
     return (
         <div
             ref={carouselRef}
-            className="overflow-x-scroll pointer-events-none py-12"
+            className="overflow-x-scroll py-12"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             onWheel={handleScroll}
